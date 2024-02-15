@@ -1,0 +1,54 @@
+Queue ADT
+
+A list or a linear collection with the restriction that
+insertion can be performed only in one end (rear)
+and deletion can only be performed in other end (front)
+
+FIFO
+First-In-First-Out
+
+
+
+Associated ADT Operations
+1. Enqueue(x) or Push(x)
+2. Dequeue() or Pop()
+3. Front() or Peek()
+4. IsEmpty()
+5. IsFull()
+All these operations must take constant time. O(1)
+
+
+Applications of Queue
+
+1. Suppose some resource/shared resource is to service some request
+but it can take only one request at a time. Here, it makes sense
+to queue up the requests. 
+Eg: Queueing requests on a printer because only one sheet can be printed at a time
+
+2. The computer processer also works on a queue therefore, queues up processes
+
+3. Used to simulate wait
+
+
+
+Implementation of Queue in C++ [Array] :-
+Basically we start with rear and front at one point, when we reach last element,
+we circle back to starting point because of circular array 
+
+Next element in circular array is given by
+next = (i + 1) % N
+N is the total elements in the circular array
+i = current position
+
+When array gets full either
+1. Say "Sorry, Queue is full"
+OR
+2. Copy to a bigger array, this process is T ∝ O(N)
+
+
+LIST Implementation
+Just make sure to deallocate nodes when dequeueing
+and use two variables Node* head and tail instead of the 
+integers "front" and "rear" in array case
+:)
+

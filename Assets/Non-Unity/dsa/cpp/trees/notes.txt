@@ -1,0 +1,60 @@
+Tree is a hierarchical data structure
+Not like the linear structures we  have seen so far
+
+> Each element is called a node, connected by links
+> the topmost node in the hierarchy is called the root node
+> the nodes directly below (only directly below) a node
+are called child nodes
+
+> (similar to parent, children and grandchilldren and 
+stuff for Unity Transform Hierarchy)
+root is the only node without a parent
+all similar terminoloogy to unity hierarchy
+- root
+- children
+- parent
+- sibling
+- leaf
+
+> nodes WITHOUT children are called leaves
+nodes WITH children are called internal nodes
+
+> links between nodes aren't bidirectional
+
+
+>>PROPERTIES OF TREES<<
+
+1. Trees are called 'recursive data structure'
+"recursion is just something that 
+can be reduced in a self similar manner"
+
+> You can define a tree as some distinguished node called root
+and some subtrees linked to it
+
+
+2. In a tree with N nodes, there are N-1 edges (links)
+
+3. Depth and Height
+Depth = number of edges from root to a node is called 
+depth of that node
+Height = no. of edges in longest path from node to a leaf
+
+Since "travelling" the tree is only unidirectional,
+longest path refers to longest path downwards, not up to the parent
+
+Height of tree = height from root   
+               = dist. of longest path from root to a leaf
+
+height of empty tree = -1
+height of tree with 1 node = 0
+
+>>BINARY TREE<<
+a tree with ATMOST 2 children in each node
+
+>>APPLICATIONS OF TREE<<
+1. Storing naturally hierarchical data
+Eg: File system
+2. Organizing data for searching, insertion, deletion
+Eg: Binary Search Tree (BST)
+3. Trie - dictionary
+4. Used in Network Routing algorithms

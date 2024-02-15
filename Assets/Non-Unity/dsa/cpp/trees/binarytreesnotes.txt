@@ -1,0 +1,29 @@
+>> PROPERTIES <<
+1. at most 2 children
+
+2. Strict Binary Tree: are when each node has either 2 or 0 children
+no single child
+
+3. Complete Binary Tree: If all levels except possibly the last are 
+completely filled and all nodes are left as possible
+(yes, left here refers to the "left" node and not the right node.
+the subtrees/children should belong to the left node of the parent node)
+
+ > Max number of nodes at a given level i = 2^i
+
+4. Perfect Binary Tree: All levels are completely filled
+> Maximum no. of nodes in a binary tree with height h =  2^(h+1) - 1
+> Height of perfect binary tree with n nodes = log2(n+1) - 1
+> Height of a complete binary tree = log2(n)
+
+With n nodes, minimum height possible is log2 (n)
+With n nodes, maximum height possible is n - 1
+
+5. Balanced Binary Tree: Difference between left and right subtree
+for every node is not  > k (where k is mostly 1)
+diff = | leftsubtreeheight - rightsubtreeheight |
+
+>> IMPLEMENTATIONS <<
+1. Dynamically created nodes using pointers and Heap memory
+2. Arrays - used to implement heap ADT
+    for node at index i, child is at 2i + 1 and 2i + 2

@@ -1,0 +1,31 @@
+What is Stack ADT?
+A Stack is a list with the restriction that 
+insertion and deletion can be performed from 
+one end only
+
+Operations:
+1. Push(x) //Add topmost
+2. Pop() // Remove topmost
+3. Top() // Get the topmost element
+4. IsEmpty()
+
+^^ All 4 above operations have complexity O(1)
+
+
+Stacks are LIFO
+L-Last
+I-In
+F-First
+O-Out
+The element insert last is the one thats outted the First
+
+
+Common Applications of Stack:-
+-> Function Calls/Recursion (Stack memory)
+-> Undo operation
+-> Balanced paranthesis
+
+
+Can implement Stacks using 
+- Arrays
+- Linked Lists

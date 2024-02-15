@@ -1,0 +1,45 @@
+Notations to write expressions 
+1.Infix
+2.Prefix
+3.Postfix
+
+
+I) INFIX = what we use everyday
+<operand><opereator><operand>
+has operator precedence, has some ambiguity tied to it, but all in all, it works
+
+
+II) PREFIX (polish notation aka)
+<operator><operand><operand>
+
+Infix  2+3 => Prefix + 2 3
+Infix a + b*c => Prefix + a * bc
+
+III) POSTFIX (reverse polish)
+
+<operand> <operand> <operator>
+Infix -> a + b * c
+in Postfix -> a b c * +
+
+overall, infix is human readable 
+but postfix and prefix is good for the machine
+postfix being the best 
+no need for braces or operator precedence for prefix and postfix
+
+EVALUATION OF PREFIX 
+AND POSTFIX EXPRESSIONS
+
+done in evaluate postfix (using stack)
+
+and for prefix, just do the same but evaluate expression from last to first
+
+
+CONVERSION FROM INFIX TO POSTFIX
+There is an algorithm for this which converts 
+by just parsing through expression once
+
+
+
+
+
+
