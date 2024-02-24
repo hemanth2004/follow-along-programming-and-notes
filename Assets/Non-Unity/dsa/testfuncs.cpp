@@ -1,19 +1,45 @@
 #include <iostream>
 #include <math.h>
+#include <set>
 
 using namespace std;
 
-bool IsNumber(string s);
+struct Node
+{
+    int data;
+    Node* next;
+};
+
+Node* Insert(Node* head, int data)
+{
+    Node* temp = new Node;
+    temp->data = data;
+    temp->next = nullptr;
+    if(head != nullptr) temp->next = head;
+    head = temp;
+
+}
+void Print(Node* head)
+{
+    struct Node* temp = head;
+    printf("Forward Print: ");
+    while(temp != NULL)
+    {
+        printf("%d ", temp->data);
+        temp = temp->next;
+    }
+    printf("\n");
+}
 int main()
 {
-    cout << IsNumber("123+");
+    Node* head = nullptr;
+
+    head = Insert(head, 5);
+    Print(head);
+    
 }
-bool IsNumber(string s)
-{
-    for(int i = 0; i < s.length(); i++)
-    {
-        if(!(s[i] >= '0' && s[i] <= '9'))
-            return false;
-    }
-    return true;
-}  
+
+// for(range_declaration : range_expression)
+// {
+    
+// }

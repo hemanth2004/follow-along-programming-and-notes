@@ -52,6 +52,7 @@
         "xtree": "cpp",
         "algorithm": "cpp",
         "array": "cpp",
-        "queue": "cpp"
+        "queue": "cpp",
+        "set": "cpp"
     }
 }

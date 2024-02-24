@@ -1,5 +1,6 @@
 #include <iostream>
 #include <queue>
+#include <stack>
 using namespace std;
 
 struct Node
@@ -16,7 +17,6 @@ Node* GetNewNode(int data)
     newNode->left = newNode->right = nullptr;
     return newNode;
 }
-
 
 Node* Insert(Node* root, int data)
 {
@@ -58,15 +58,16 @@ Node* InsertNoRec(Node* root, int data)
     return root;
 }
 
-bool Search(Node* root, int data)
+// Search for a node in given tree
+Node* Search(Node* root, int data)
 {
     if(root == nullptr)
     {
-        return false;
+        return nullptr;
     }
     else if(root->data == data)
     {
-        return true;
+        return root;
     }
     else if(data <= root->data) 
     {
@@ -98,25 +99,26 @@ int FindMinRec(Node* root)
 
 int FindHeight(Node* root)
 {
-    int heightLeft;
-    int heightRight;
+    int heightLeft = FindHeight(root->left);
+    int heightRight = FindHeight(root->right);
     if(root == nullptr)
         return -1;
-    else if((heightLeft = FindHeight(root->left)) >= (heightRight = FindHeight(root->right)))
+    else if(heightLeft >= heightRight)
         return heightLeft + 1;
     else
         return heightRight + 1;
 }
 
 // Breadth-First
-void print_queue(queue<Node*> q)
+void print_queue(queue<Node*> myQueue)
 {
-    queue<Node*> temp = q;
-    while (!temp.empty()) {
-        cout << temp.front()->data <<" ";
-        temp.pop();
-    }
-    cout << '\n';
+  for (size_t i = 0; i < myQueue.size(); i++)
+{
+    cout << myQueue.front()->data << endl;
+    myQueue.push(myQueue.front());
+    myQueue.pop();
+}
+  cout << endl;
 }
 
 void LevelOrder(Node* root)
@@ -125,19 +127,86 @@ void LevelOrder(Node* root)
         return;
     
     queue<Node*> Q;
-    Q.push(root);   
-    print_queue(Q);
+    Q.push(root);
+   
+
+    // To keep track of current level, add nullptr delimiter
     while(!Q.empty())
     {
         Node* current = Q.front();
-        //cout << current->data << " ";
-        if(current->left != nullptr)
-            Q.push(current->left);
-        if(current->right != nullptr)
-            Q.push(current->right);
         Q.pop();
 
-        print_queue(Q);
+        cout << current->data << " ";
+
+        if(current->left != nullptr)
+            Q.push(current->left);
+
+        if(current->right != nullptr)
+            Q.push(current->right);
+       
+        cout << endl;
+
+    }
+    cout << endl;
+    cout << endl;
+}
+
+void reverseQueue(queue<Node*>& Queue)
+{
+    stack<Node*> Stack;
+    while (!Queue.empty()) {
+        Stack.push(Queue.front());
+        Queue.pop();
+    }
+    while (!Stack.empty()) {
+        Queue.push(Stack.top());
+        Stack.pop();
+    }
+}
+
+void LevelZigZag(Node* root)
+{
+    if(root == nullptr)
+        return;
+    
+    queue<Node*> Q;
+    Q.push(root);
+    Q.push(nullptr);
+    int level = 0;
+
+    // To keep track of current level, add nullptr delimiter
+    while(!Q.empty())
+    {
+        Node* current = Q.front();
+        if(current == nullptr)
+        {
+            if(Q.size() == 1)
+                break;
+            
+            level++;
+            cout << "next level" << endl;
+            reverseQueue(Q);
+            continue;
+        }
+        Q.pop();
+        
+        cout << current->data << " ";
+
+        if(level%2 == 0)
+        {
+            if(current->left != nullptr)
+                Q.push(current->left);
+            if(current->right != nullptr)
+                Q.push(current->right);
+        }
+        else
+        {
+            if(current->right != nullptr)
+                Q.push(current->right);
+            if(current->left != nullptr)
+                Q.push(current->left);
+        }
+        
         cout << endl;
 
     }
@@ -201,6 +270,7 @@ bool IsSubtreeGreater(Node* root, int value)
     else
         return false;
 }
+
 bool IsBinarySearchTree(Node* root, int minValue, int maxValue)
 {
     if(root == nullptr)
@@ -216,24 +286,12 @@ bool IsBinarySearchTree(Node* root, int minValue, int maxValue)
             && IsBinarySearchTree(root->right, root->data, maxValue);
 }
 
-// bool IsBinarySearchTreeInorder(Node* root)
-// {
-//     static int prev = INT_MIN;
-//     // checking whether tree is BST or not using DF inorder traversal
-
-//     if(root == nullptr)
-//         return true;
-
-//     IsBinarySearchTreeInorder(root->left);
-//     if(prev =)
-    
-// }
-
-
+// Delete Node from Binary Tree
 Node* Delete(Node* root, int data)
 {
     if(root == nullptr)
         return root;
+
     else if(data < root->data)
     {
         root->left = Delete(root->left, data);
@@ -272,6 +330,39 @@ Node* Delete(Node* root, int data)
         }
 
     }
+    return root;
+}
+
+// Find Successor in BST
+Node* GetSuccessor(Node* root, int data)
+{
+    Node* current = Search(root, data);
+    
+    if(current == nullptr)
+    return nullptr;
+    if(current->right != nullptr)
+    {
+        return FindMin(current->right);
+    }
+    else
+    {
+        Node* successor = nullptr;
+        Node* ancestor = root;
+        while(ancestor != current)
+        {
+            if(current->data < ancestor->data)
+            {
+                successor = ancestor;
+                ancestor = ancestor->left;
+            }
+            else
+            {
+                ancestor = ancestor->right;
+            }
+        }
+        return successor;
+    }
+
 }
 
 int main()
@@ -300,8 +391,16 @@ int main()
     // cout << endl << endl;
     // Postorder(root);
 
-    cout << IsBinarySearchTree(root, INT_MIN, INT_MAX) << endl;
-    root->left->left->data = 100;
-    cout << IsBinarySearchTree(root, INT_MIN, INT_MAX);
+    //LevelZigZag(root);
+
+    //print_queue(q);
+    //reverseQueue(q);
+    //print_queue(q);
+
+    cout << GetSuccessor(root, 30)->data << endl;
+
+    //cout << IsBinarySearchTree(root, INT_MIN, INT_MAX) << endl;
+    //root->left->left->data = 100;
+    //cout << IsBinarySearchTree(root, INT_MIN, INT_MAX);
 
 }

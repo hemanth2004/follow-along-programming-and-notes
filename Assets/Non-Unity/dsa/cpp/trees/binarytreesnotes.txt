@@ -29,3 +29,6 @@ diff = | leftsubtreeheight - rightsubtreeheight |
     for node at index i, child is at 2i + 1 and 2i + 2
 
 Level order Traversal notes taken in book
+
+
+>> INORDER SUCCESSOR <<

@@ -1,0 +1,47 @@
+G R A P H S
+
+the points in the graphs are called nodes/vertices
+the lines connecting the points are called edges
+
+N nodes in graph => N-1 edges
+
+Tree vs graph => There are NO rules on connections b/w nodes
+A tree is a type of graph
+
+Mathematically, graph data structure G is an ordered pair
+of a set V of vertices and set E of edges
+
+G = (E, V)
+
+now vertices can be named as v1, v2, v3 etc etc
+
+Next are the edges. How do you represent edges? with the
+two vertices that the edge connects. Now edges can be of 
+two types. Directed and non-Directed edges. directed are 
+unidirectional links and non-directed are bi-directional.
+
+directional: a --> b
+non-directional: a <--> b
+
+in directed example, a is "origin", b is "destination"
+if another link b --> a was created, it would be Mathematically
+represented as (b, a), and the original a-->b link is 
+Mathematically represented as (a, b). Which are ordered pairs.
+where order matters.
+For non-directional edges, their Mathematical representation 
+is {a, b} which is an unordered pair.
+
+Therefore graph in math would be something like
+V = {v1, v2, v3, v4}
+E = { {v1, v2}, {v2, v3}, {v3, v4},
+     {v1, v4}, {v1, v3}, {v2, v4} }
+
+
+Graph with all directed edges = "Directed Graph" or "Digraph"
+(arrow marks for direction)
+
+Graph with all undirected edges = "undirected graph"    
+(no arrow marks)
+
+A social network is an example for a digraph
+Webpages on a site are an example for a directed graph
