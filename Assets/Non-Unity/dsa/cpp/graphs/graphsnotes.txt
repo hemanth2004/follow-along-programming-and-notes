@@ -3,8 +3,6 @@ G R A P H S
 the points in the graphs are called nodes/vertices
 the lines connecting the points are called edges
 
-N nodes in graph => N-1 edges
-
 Tree vs graph => There are NO rules on connections b/w nodes
 A tree is a type of graph
 
@@ -14,6 +12,8 @@ of a set V of vertices and set E of edges
 G = (E, V)
 
 now vertices can be named as v1, v2, v3 etc etc
+
+
 
 Next are the edges. How do you represent edges? with the
 two vertices that the edge connects. Now edges can be of 
@@ -36,6 +36,8 @@ V = {v1, v2, v3, v4}
 E = { {v1, v2}, {v2, v3}, {v3, v4},
      {v1, v4}, {v1, v3}, {v2, v4} }
 
+|V| = number of vertices
+|E| = number of edges
 
 Graph with all directed edges = "Directed Graph" or "Digraph"
 (arrow marks for direction)
@@ -45,3 +47,114 @@ Graph with all undirected edges = "undirected graph"
 
 A social network is an example for a digraph
 Webpages on a site are an example for a directed graph
+
+FF: Web-Crawling by Google is just fancy graph traversal 
+🤯🤯🧍‍♂️🧍‍♂️🐪🐪🫸🫸🫷🫷👊🤌🤌
+
+
+
+Now, a graph can be weighted or unweighted.
+A weighted graph has weights or some costs associated with
+edges.
+(refer pic2.png)
+so some algorithm like google maps will assign longer roads 
+higher cost and shorter roads lower cost, if theres slow
+traffic, then theres an even higher cost etc etc
+
+Unweughted graphs are just weighted graphs with cost of all
+edges = 1
+
+An intercity graph with popular destinations connected by highways
+could be a nondirectional graph since highways are twoway roads
+An intracity graph with destinations connected by 
+roads could be a directional graph since some roads can  be
+one-ways or closed
+
+Special cases of edges:
+1. Self-loop/self-edge: if both origin and destination 
+   are the same vertex
+2. Multi-edge/Parallel-edge: if two edges have the same 
+   origin and destination, they are called parallel-edges
+
+If there are no self-loops or multiedges, its a simple graph
+
+In general, if there are n vertices in a graph, then
+if |V| = n
+then 0 <= |E| <= n(n-1) in case of directed graph
+in case of undirected, 0 <= |E| <= n(n-1)/2
+(all of the above assuming simple graph)
+
+Terminology-
+1. Dense graph -> if |E| is close to maximum 
+2. Sparse graph -> too few edges
+3. Path -> a sequence of vertices where each adjacent pair
+is connected by an edge <A, B, F, G>
+4. Simple Path-> a path where no vertices 
+and thus no edges are repeated.
+
+Usually when we say Path, we refer to Simple path
+To refer to Path, we say Walk.
+
+5. Trail -> A walk in which no edges are repeated.
+6. Strongly connected graph -> if there is a path from
+any vertex to any other vertex
+5. Connected graph -> if its possible to traverse from one 
+vertex to any othere vertex in the graph
+6. Weakly connected graph -> if its not possible to traverse
+from one v to any other v even though there are links between
+all vertices 
+7. Not connected graphs -> when a graph has two islands 
+and these two islands are not connected by any link
+8. Closed walk -> starts and ends at the same vertex
+9. Cycle -> there is no repetition in the path other than 
+the start and end vertex.
+10. Acyclic graph -> a graph with no possible cycles is an 
+acyclic graph. Theres undirected acyclic graph and directed
+acyclic graph
+Eg: a tree is UAG and you can easilywrite an example for DAG too
+
+
+GRAPH REPRESENTATION
+
+( I ) One way to represent graphs in a program is to have two lists/vectors/
+arrays/dynamic arrays. one for list of vertices and one for list of edges
+The list of edges would contain address/index of the two vertices and
+another variable to hold the weight of the edge.
+Cost for common operations like find neighbour nodes would be O(|E|)
+which is also written as O(|V|*|V|)
+[|E| = |V|^2 -|V| but Big-O considers largest term]
+Finding if two nodes are connecte = O(|E|)
+
+( II ) Another way is using an Adjacency matrix where we have a square matrix with 
+number of elements in a row = |V|. Every slot [i][j] where i and j 
+are indices of vertexes is marked as 1, wherever i and j are not verticces
+of an edge are marked as 0.
+Time complexity of neighbour node operation would be O(|V|)
+Finding if two nodes are connected is O(1) using indices
+But if the node itself is given as input, then you need search through 
+array and so now TC = O(1) + O(|V|) which is O(|V|)
+But O(|V|) can be avoided using Hash tables so TC = O(1)
+
+( III ) The third way is similar to the second way but this 
+incorporates weights to edges. instead of 0 to denote absence of edge
+we just use a very large value (infinite ideally). and "presence"
+of a value is considered with any non-infinite number present in the
+matrix and the value itself is the weight
+
+The problem with Adjacency matrices is that they use a lot of memory O(|V|^2)
+fb has 1 billion users. if zucc wants to track all social networks
+he would have to create 1 billion * 1 billion = 1000 PB memory slots.
+not possible. If avg friends per user is 1000, then the real
+number of edges is 5e+11 = 0.5 TB which is a lot leseser
+
+( IV ) Adjacency Matrices are symmetrical w.r.t. their upper triangular
+ and lower triangular parts so they end up consuming more memory. The solution is 
+ int *A[8];
+ A[0] = new int[number of connections of Node 0];
+ .
+ .
+ .
+ A[8] = new int[number of connections of Node 8];
+ 8 can be any number tho;
+
+ but info about absense of connections is lost
