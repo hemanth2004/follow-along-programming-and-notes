@@ -4,7 +4,7 @@
 # Game Dev Resources
 
 ## Graphics
-- [The beginners guide to realistic graphics in Unity](https://www.youtube.com/watch?v=fBQvL5YR3eg&ab_channel=IstoInc.)
+- [The beginners guide to real time graphics](https://www.youtube.com/watch?v=fBQvL5YR3eg&ab_channel=IstoInc.)
 
 
 ## Level Design
